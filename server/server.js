@@ -1,17 +1,21 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-// const crewRouter = require('./routes/crew.router');
-
-const PORT = process.env.PORT || 5000;
-
 const app = express();
+const PORT = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
+const hotelRouter = require('./routes/hotel.router');
 
-app.use(express.static('server/public'));
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.use(bodyParser.json());
 
-// app.use('/crew', crewRouter);
+app.use(express.static('server/public'));
 
+app.use('/hotel', hotelRouter);
+
+//spin up server
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+  console.log(`App is running on port: ${PORT}`)
 });
