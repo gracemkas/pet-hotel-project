@@ -72,7 +72,7 @@ router.post('/pokemon', (req, res) => {
   router.delete('/trainer/:id', (req, res) => {
     console.log('Got to DELETE');
     console.log(req.params.id);
-    pool.query(`DELETE FROM "trainer" WHERE "id" = $1;`, [req.params.id])
+    pool.query(`DELETE FROM "trainers" WHERE "id" = $1;`, [req.params.id])
       .then( (results) =>{
         console.log('GOT TO DELETE', results);
         res.sendStatus(200);
