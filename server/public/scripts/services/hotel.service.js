@@ -7,7 +7,7 @@ app.service('HotelService', ['$http', function($http) {
 
     self.addPokemon = function(newPokemon) {
         console.log(`got to pokemon add:`, newPokemon);
-        newPokemon.checked_in = 'in';
+        newPokemon.checked_in = 'In';
         $http({
           method: 'POST',
           url: '/hotel/pokemon',
@@ -93,6 +93,4 @@ app.service('HotelService', ['$http', function($http) {
     //     })
 
 
-    // self.getShips();
-    // self.getCrew();
 }]);

@@ -4,7 +4,9 @@ const pool = require('../modules/pool');
 
 router.get('/pokemon', (req, res) => {
     console.log('got to router GET');
-    pool.query(`SELECT * FROM "pokemon";`)
+    pool.query(`SELECT "pokemon".id, "pokemon".name, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".image, "trainers".name_trainer FROM "pokemon"
+    JOIN "trainers" ON "pokemon".trainer_id = "trainers".id
+    GROUP BY "pokemon".id, "pokemon".name, "trainers".name_trainer, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".image;`)
       .then( (results) => {
         console.log('Here are the router get results', results);
         res.send(results.rows);
@@ -47,7 +49,7 @@ router.post('/pokemon', (req, res) => {
     console.log('here is the req.body', req.body);
     const trainer = req.body;
     pool.query(`INSERT INTO "trainers" 
-                ("name")
+                ("name_trainer")
                 VALUES ($1);`, [trainer.name])
                 .then( (results) => {
                   console.log('results from database', results);
@@ -60,9 +62,9 @@ router.post('/pokemon', (req, res) => {
 
   router.get('/trainer', (req, res) => {
     console.log('got to trainer router GET');
-    pool.query(`SELECT "trainers".name, "trainers".id, count("trainers".id) FROM "trainers"
+    pool.query(`SELECT "trainers".name_trainer, "trainers".id, count("pokemon".trainer_id) FROM "trainers"
     LEFT OUTER JOIN "pokemon" ON "trainers".id = "pokemon".trainer_id
-    GROUP BY "trainers".name, "trainers".id;`)
+    GROUP BY "trainers".name_trainer, "trainers".id;`)
       .then( (results) => {
         console.log('Here are the router get results', results);
         res.send(results.rows);
