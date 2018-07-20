@@ -8,8 +8,8 @@
     transition: 0.3s;
     float: left;
     margin: 10px;
-    height: 475px;
-    width: 250px;
+    height: 500px;
+    width: 275px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -24,5 +24,10 @@
 }
 
 body {
-    background-color: lightsteelblue;
+        background-image: url("http://paperlief.com/images/pixel-landscape-background-wallpaper-1.jpg");
+        background-color: #cccccc;
+}
+
+.header {
+    text-align: center;
 }
