@@ -7,7 +7,8 @@ app.service('HotelService', ['$http', function($http) {
 
     self.addPokemon = function(newPokemon) {
         console.log(`got to pokemon add:`, newPokemon);
-        newPokemon.checked_in = 'In';
+        newPokemon.checked_in = 'Yes';
+        newPokemon.checked_in_status = 'true';
         $http({
           method: 'POST',
           url: '/hotel/pokemon',
@@ -82,7 +83,28 @@ app.service('HotelService', ['$http', function($http) {
         });
     }
 
-
+    self.checkOutPokemon = function (pokemon) {
+        console.log('toggle clicked');
+        console.log(pokemon);
+        pokemon.checked_in_status = !pokemon.checked_in_status;
+        if (pokemon.checked_in == 'Yes'){
+            pokemon.checked_in = 'No';
+        }else{
+            pokemon.checked_in = 'Yes';
+        }
+        console.log('checkoutpokemon', pokemon.checked_in);
+        // pokemon.checked_in = 'No';
+        $http({
+            url: `/hotel`,
+            method: 'PUT',
+            data: pokemon
+        }).then(function (response) {
+            console.log('Put Response', response);
+            self.getPokemon();
+        }).catch(function(err){ 
+            console.log('err', err);
+        }); 
+    };
 
 
     // self.editCrewMember = function(crewMemberToEdit, id){

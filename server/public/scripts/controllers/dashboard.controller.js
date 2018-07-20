@@ -14,6 +14,16 @@ app.controller('DashboardController', ['HotelService', function(HotelService){
         HotelService.removePokemon(pokemonId);
     }
 
+    self.checkOutPokemon = function(pokemon) {
+        HotelService.checkOutPokemon(pokemon);  
+    }
+
+    self.checkInPokemon = function(pokemonId) {
+        HotelService.checkOutPokemon(pokemonId);
+    }
+
+    // self.CurrentDate = new Date();
+
     HotelService.getPokemon();
     HotelService.getTrainer();
   

@@ -4,9 +4,9 @@ const pool = require('../modules/pool');
 
 router.get('/pokemon', (req, res) => {
     console.log('got to router GET');
-    pool.query(`SELECT "pokemon".id, "pokemon".name, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".image, "trainers".name_trainer FROM "pokemon"
+    pool.query(`SELECT "pokemon".id, "pokemon".name, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".checked_in_status, "pokemon".image, "trainers".name_trainer FROM "pokemon"
     JOIN "trainers" ON "pokemon".trainer_id = "trainers".id
-    GROUP BY "pokemon".id, "pokemon".name, "trainers".name_trainer, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".image;`)
+    GROUP BY "pokemon".checked_in_status, "pokemon".id, "pokemon".name, "trainers".name_trainer, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".image;`)
       .then( (results) => {
         console.log('Here are the router get results', results);
         res.send(results.rows);
@@ -20,8 +20,8 @@ router.post('/pokemon', (req, res) => {
     console.log('here is the req.body', req.body);
     const pokemon = req.body;
     pool.query(`INSERT INTO "pokemon" 
-                ("name", "type", "color", "checked_in", "image", "trainer_id")
-                VALUES ($1, $2, $3, $4, $5, $6);`, [pokemon.name, pokemon.type, pokemon.color, pokemon.checked_in, pokemon.image, pokemon.trainer_id])
+                ("name", "type", "color", "checked_in", "image", "trainer_id", "checked_in_status")
+                VALUES ($1, $2, $3, $4, $5, $6, $7);`, [pokemon.name, pokemon.type, pokemon.color, pokemon.checked_in, pokemon.image, pokemon.trainer_id, pokemon.checked_in_status])
                 .then( (results) => {
                   console.log('results from database', results);
                   res.sendStatus(201);
@@ -84,6 +84,20 @@ router.post('/pokemon', (req, res) => {
         console.log('Error from delete', error);      
       })
   });
+
+  router.put(`/`, (req, res) => {
+    //req.params.id is who we're updating
+    //req.body is what we're updating
+    console.log('GOT TO PUT ROUTER', req.body);
+    let pokemon = req.body;
+    pool.query(`UPDATE "pokemon" SET "checked_in_status" = $1, "checked_in" = $2 WHERE "id" = $3;`, [pokemon.checked_in_status, pokemon.checked_in, pokemon.id])
+.then( (results) => {
+    console.log('results', results);
+    res.sendStatus(200);
+}).catch( (error) => {
+    console.log('Error from update', error);      
+  })
+});
 
 
   module.exports = router;
