@@ -3,6 +3,7 @@ app.controller('DashboardController', ['HotelService', function(HotelService){
     let self = this;
 
     self.pokemonList = HotelService.pokemonList;
+    self.trainerList = HotelService.trainerList;
 
     self.addPokemon = function (newPokemon) {
         HotelService.addPokemon(newPokemon);
@@ -14,5 +15,6 @@ app.controller('DashboardController', ['HotelService', function(HotelService){
     }
 
     HotelService.getPokemon();
+    HotelService.getTrainer();
   
   }]);

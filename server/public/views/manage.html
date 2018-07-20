@@ -1,5 +1,5 @@
 <div>
-    <h3>ADD A POKEMON</h3>
+    <h3>Add A Trainer</h3>
     <div>
         <input ng-model="vm.newTrainer.name" type="text" placeholder="Trainer Name">
         <button class="btn btn-secondary" ng-click="vm.addTrainer(vm.newTrainer)">ADD TRAINER</button>
@@ -17,7 +17,7 @@
       <tbody>
         <tr ng-repeat="trainer in vm.trainerList.list">
           <td>{{trainer.name}}</td>
-          <td>{{trainer.numberOfPets}}</td>
+          <td>{{trainer.count}}</td>
           <td><button ng-click="vm.removeTrainer(trainer.id)">DELETE</button></td>
         </tr>
       </tbody>

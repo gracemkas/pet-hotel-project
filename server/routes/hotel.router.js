@@ -18,8 +18,8 @@ router.post('/pokemon', (req, res) => {
     console.log('here is the req.body', req.body);
     const pokemon = req.body;
     pool.query(`INSERT INTO "pokemon" 
-                ("name", "type", "color", "checked_in", "image", "owner")
-                VALUES ($1, $2, $3, $4, $5, $6);`, [pokemon.name, pokemon.type, pokemon.color, pokemon.checked_in, pokemon.image, pokemon.owner])
+                ("name", "type", "color", "checked_in", "image", "trainer_id")
+                VALUES ($1, $2, $3, $4, $5, $6);`, [pokemon.name, pokemon.type, pokemon.color, pokemon.checked_in, pokemon.image, pokemon.trainer_id])
                 .then( (results) => {
                   console.log('results from database', results);
                   res.sendStatus(201);
@@ -60,7 +60,9 @@ router.post('/pokemon', (req, res) => {
 
   router.get('/trainer', (req, res) => {
     console.log('got to trainer router GET');
-    pool.query(`SELECT * FROM "trainers";`)
+    pool.query(`SELECT "trainers".name, "trainers".id, count("trainers".id) FROM "trainers"
+    LEFT OUTER JOIN "pokemon" ON "trainers".id = "pokemon".trainer_id
+    GROUP BY "trainers".name, "trainers".id;`)
       .then( (results) => {
         console.log('Here are the router get results', results);
         res.send(results.rows);

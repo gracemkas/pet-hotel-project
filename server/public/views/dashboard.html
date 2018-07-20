@@ -11,9 +11,9 @@
             <option value="Grass">Grass</option>
             <option value="Electric">Electric</option>
         </select>
-        <select ng-model="vm.newPokemon.owner">
+        <select ng-model="vm.newPokemon.trainer_id">
             <option value="">Pokemon Trainer</option>
-            <option value="Ash">Ash</option>
+            <option ng-repeat="trainer in vm.trainerList.list" value="{{trainer.id}}">{{trainer.name}}</option>
         </select>
         <select ng-model="vm.newPokemon.image">
             <option value="">Choose a Picture</option>
@@ -33,7 +33,7 @@
       <h4><b>Name: {{pokemon.name}}</b></h4> 
       <p>Color: {{pokemon.color}}</p> 
       <p>Type: {{pokemon.type}}</p> 
-      <p>Trainer: {{pokemon.owner}}</p>
+      <p>Trainer: {{pokemon.trainer_id}}</p>
       <p>Checked In: {{pokemon.checked_in}}</p>
       <button ng-click="vm.removePokemon(pokemon.id)">DELETE</button>
       <button ng-show="false" ng-click="vm.checkInPokemon(pokemon.id)">CHECK IN</button>
