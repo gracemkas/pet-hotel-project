@@ -10,7 +10,7 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Number of Pets</th>
+          <th>Number of Pokemon</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -18,7 +18,7 @@
         <tr ng-repeat="trainer in vm.trainerList.list">
           <td>{{trainer.name_trainer}}</td>
           <td>{{trainer.count}}</td>
-          <td><button ng-click="vm.removeTrainer(trainer.id)">DELETE</button></td>
+          <td><button ng-click="vm.removeTrainer(trainer)">DELETE</button></td>
         </tr>
       </tbody>
     </table>

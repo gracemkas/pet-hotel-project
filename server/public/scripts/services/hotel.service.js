@@ -7,7 +7,7 @@ app.service('HotelService', ['$http', function($http) {
 
     self.addPokemon = function(newPokemon) {
         console.log(`got to pokemon add:`, newPokemon);
-        newPokemon.checked_in = 'Yes';
+        newPokemon.checked_in = new Date();
         newPokemon.checked_in_status = 'true';
         $http({
           method: 'POST',
@@ -87,10 +87,10 @@ app.service('HotelService', ['$http', function($http) {
         console.log('toggle clicked');
         console.log(pokemon);
         pokemon.checked_in_status = !pokemon.checked_in_status;
-        if (pokemon.checked_in == 'Yes'){
+        if (pokemon.checked_in != 'No'){
             pokemon.checked_in = 'No';
         }else{
-            pokemon.checked_in = 'Yes';
+            pokemon.checked_in = new Date();
         }
         console.log('checkoutpokemon', pokemon.checked_in);
         // pokemon.checked_in = 'No';

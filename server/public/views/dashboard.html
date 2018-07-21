@@ -18,7 +18,7 @@
         <select ng-model="vm.newPokemon.image">
             <option value="">Choose a Picture</option>
             <option value="pikachu.png">Pikachu</option>
-            <option value="bulbasaur.png">Bulbasaur</option>
+            <option value="shinybulbasaur.png">Bulbasaur</option>
             <option value="charmander.png">Charmander</option>
             <option value="eevee.png">Eevee</option>
             <option value="squirtle.png">Squirtle</option>
@@ -34,12 +34,9 @@
       <p>Color: {{pokemon.color}}</p> 
       <p>Type: {{pokemon.type}}</p> 
       <p>Trainer: {{pokemon.name_trainer}}</p>
-      <p>Checked In: {{pokemon.checked_in}}</p>
+      <p>Checked In: {{pokemon.checked_in | date:'MM/dd/yyyy'}}</p>
       <button ng-click="vm.removePokemon(pokemon.id)">DELETE</button>
       <button ng-hide="{{pokemon.checked_in_status}}" ng-click="vm.checkInPokemon(pokemon)">CHECK IN</button>
       <button ng-show="{{pokemon.checked_in_status}}" ng-click="vm.checkOutPokemon(pokemon)">CHECK OUT</button>
     </div>
 </div>
-
-<!-- <h1>Date</h1>
-<u>dd/MM/yyyy format</u><span>{{CurrentDate | date:'dd/MM/yyyy'}}</span> -->

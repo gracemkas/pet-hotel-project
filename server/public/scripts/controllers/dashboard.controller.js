@@ -22,7 +22,7 @@ app.controller('DashboardController', ['HotelService', function(HotelService){
         HotelService.checkOutPokemon(pokemonId);
     }
 
-    // self.CurrentDate = new Date();
+    self.CurrentDate = new Date();
 
     HotelService.getPokemon();
     HotelService.getTrainer();

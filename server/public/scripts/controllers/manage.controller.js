@@ -9,8 +9,12 @@ app.controller('ManageController', ['HotelService', function(HotelService){
         self.newTrainer = {};
     };
 
-    self.removeTrainer = function (pokemonId) {
-        HotelService.removeTrainer(pokemonId);
+    self.removeTrainer = function (trainer) {
+        if(trainer.count > 0) {
+            alert(`You can't delete a trainer with pokemon!`);
+        } else {
+            HotelService.removeTrainer(trainer.id);
+        }   
     }
 
     HotelService.getTrainer();
