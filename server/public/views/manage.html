@@ -1,25 +1,29 @@
 <div>
-    <h3>Add A Trainer</h3>
-    <div>
-        <input ng-model="vm.newTrainer.name" type="text" placeholder="Trainer Name">
-        <button class="btn btn-secondary" ng-click="vm.addTrainer(vm.newTrainer)">ADD TRAINER</button>
-    </div>
-</div>
-<div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Number of Pokemon</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="trainer in vm.trainerList.list">
-          <td>{{trainer.name_trainer}}</td>
-          <td>{{trainer.count}}</td>
-          <td><button ng-click="vm.removeTrainer(trainer)">DELETE</button></td>
-        </tr>
-      </tbody>
-    </table>
+  <hr>
+  <h3 class="label">Add A Trainer</h3>
+  <div class="input">
+    <input ng-model="vm.newTrainer.name" type="text" placeholder="Trainer Name">
+    <button class="btn btn-secondary" ng-click="vm.addTrainer(vm.newTrainer)">ADD TRAINER</button>
   </div>
+</div>
+<br>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Number of Pokemon</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="trainer in vm.trainerList.list">
+        <td>{{trainer.name_trainer}}</td>
+        <td>{{trainer.count}}</td>
+        <td>
+          <button ng-click="vm.removeTrainer(trainer)">DELETE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

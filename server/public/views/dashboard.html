@@ -1,6 +1,7 @@
 <div>
-    <h3>ADD A POKEMON</h3>
-    <div>
+    <hr>
+    <h3 class="label">ADD A POKEMON</h3>
+    <div class="input">
         <input ng-model="vm.newPokemon.name" type="text" placeholder="Pokemon Name">
         <input ng-model="vm.newPokemon.color" type="text" placeholder="Pokemon Color">
         <select ng-model="vm.newPokemon.type">
@@ -26,7 +27,9 @@
         <button class="btn btn-secondary" ng-click="vm.addPokemon(vm.newPokemon)">ADD LISTING</button>
     </div>
 </div>
-<h2>History</h2>
+<hr>
+<h2 class="label">History</h2>
+<hr>
 <div ng-repeat="pokemon in vm.pokemonList.list" class="card">
     <img ng-src="../images/{{pokemon.image}}" alt="Pokemon Picture" style="width:100%; height:50%">
     <div class="container">
