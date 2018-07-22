@@ -1,4 +1,4 @@
-var app = angular.module('PokemonHotelApp', ['ngRoute']);
+const app = angular.module('PokemonHotelApp', ['ngRoute']);
 
 app.config(function ($routeProvider){
     $routeProvider.when('/', {    
@@ -10,6 +10,6 @@ app.config(function ($routeProvider){
         controller : 'ManageController as vm'
     })
     .otherwise({
-        template : '<h1>404</h1>'
+        templateUrl: 'views/error.html'
     })
 })
