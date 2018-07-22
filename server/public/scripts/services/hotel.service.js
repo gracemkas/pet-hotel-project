@@ -5,7 +5,6 @@ app.service('HotelService', ['$http', function ($http) {
     self.pokemonList = {
         list: []
     };
-    // self.gifList = { list: [] };
     self.trainerList = {
         list: []
     };
@@ -55,7 +54,6 @@ app.service('HotelService', ['$http', function ($http) {
             .then(function (response) {
                 pokemon.image = response.data.data;
                 console.log('getGif', response.data.data);
-                
             }).catch(function (err) {
                 console.log('error from search get', err);
             })
@@ -120,7 +118,6 @@ app.service('HotelService', ['$http', function ($http) {
             pokemon.checked_in = new Date();
         }
         console.log('checkoutpokemon', pokemon.checked_in);
-        // pokemon.checked_in = 'No';
         $http({
             url: `/hotel`,
             method: 'PUT',

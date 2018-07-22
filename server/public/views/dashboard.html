@@ -16,14 +16,6 @@
             <option value="">Pokemon Trainer</option>
             <option ng-repeat="trainer in vm.trainerList.list" value="{{trainer.id}}">{{trainer.name_trainer}}</option>
         </select>
-        <select ng-model="vm.newPokemon.image">
-            <option value="">Choose a Picture</option>
-            <option value="pikachu.png">Pikachu</option>
-            <option value="shinybulbasaur.png">Bulbasaur</option>
-            <option value="charmander.png">Charmander</option>
-            <option value="eevee.png">Eevee</option>
-            <option value="squirtle.png">Squirtle</option>
-        </select>
         <button class="btn btn-secondary" ng-click="vm.addPokemon(vm.newPokemon)">ADD LISTING</button>
     </div>
 </div>

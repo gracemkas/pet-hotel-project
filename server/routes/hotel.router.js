@@ -4,9 +4,9 @@ const pool = require('../modules/pool');
 
 router.get('/pokemon', (req, res) => {
     console.log('got to router GET');
-    pool.query(`SELECT "pokemon".id, "pokemon".name, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".checked_in_status, "pokemon".image, "trainers".name_trainer FROM "pokemon"
+    pool.query(`SELECT "pokemon".id, "pokemon".name, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".checked_in_status, "trainers".name_trainer FROM "pokemon"
     JOIN "trainers" ON "pokemon".trainer_id = "trainers".id
-    GROUP BY "pokemon".checked_in_status, "pokemon".id, "pokemon".name, "trainers".name_trainer, "pokemon".type, "pokemon".color, "pokemon".checked_in, "pokemon".image;`)
+    GROUP BY "pokemon".checked_in_status, "pokemon".id, "pokemon".name, "trainers".name_trainer, "pokemon".type, "pokemon".color, "pokemon".checked_in;`)
       .then( (results) => {
         console.log('Here are the router get results', results);
         res.send(results.rows);
@@ -20,8 +20,8 @@ router.post('/pokemon', (req, res) => {
     console.log('here is the req.body', req.body);
     const pokemon = req.body;
     pool.query(`INSERT INTO "pokemon" 
-                ("name", "type", "color", "checked_in", "image", "trainer_id", "checked_in_status")
-                VALUES ($1, $2, $3, $4, $5, $6, $7);`, [pokemon.name, pokemon.type, pokemon.color, pokemon.checked_in, pokemon.image, pokemon.trainer_id, pokemon.checked_in_status])
+                ("name", "type", "color", "checked_in", "trainer_id", "checked_in_status")
+                VALUES ($1, $2, $3, $4, $5, $6);`, [pokemon.name, pokemon.type, pokemon.color, pokemon.checked_in, pokemon.trainer_id, pokemon.checked_in_status])
                 .then( (results) => {
                   console.log('results from database', results);
                   res.sendStatus(201);
