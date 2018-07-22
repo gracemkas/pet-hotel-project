@@ -25,6 +25,7 @@ app.controller('DashboardController', ['HotelService', function(HotelService){
     self.CurrentDate = new Date();
 
     HotelService.getPokemon();
+
     HotelService.getTrainer();
   
   }]);
