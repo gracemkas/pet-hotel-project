@@ -16,24 +16,24 @@
             <option value="">Pokemon Trainer</option>
             <option ng-repeat="trainer in vm.trainerList.list" value="{{trainer.id}}">{{trainer.name_trainer}}</option>
         </select>
-        <button class="btn btn-secondary" ng-click="vm.addPokemon(vm.newPokemon)">ADD LISTING</button>
+        <button class="btn btn-secondary btn-sm" ng-click="vm.addPokemon(vm.newPokemon)">ADD LISTING</button>
     </div>
 </div>
 <hr>
 <h2 class="label">History</h2>
 <hr>
 <div ng-repeat="pokemon in vm.pokemonList.list" class="card">
-    <img ng-src="{{pokemon.image[0].images.downsized_medium.url}}" alt="Pokemon Picture" style="width:100%; height:50%"/>
+    <img ng-src="{{pokemon.image[0].images.downsized_medium.url}}" alt="Pokemon Picture" style="width:100%; height:50%" />
     <div class="container">
-      <h4><b>Name: {{pokemon.name}}</b></h4> 
-      <p>Color: {{pokemon.color}}</p> 
-      <p>Type: {{pokemon.type}}</p> 
-      <p>Trainer: {{pokemon.name_trainer}}</p>
-      <p>Checked In: {{pokemon.checked_in | date:'MM/dd/yyyy'}}</p>
-      <button ng-click="vm.removePokemon(pokemon.id)">DELETE</button>
-      <button ng-hide="{{pokemon.checked_in_status}}" ng-click="vm.checkInPokemon(pokemon)">CHECK IN</button>
-      <button ng-show="{{pokemon.checked_in_status}}" ng-click="vm.checkOutPokemon(pokemon)">CHECK OUT</button>
+        <h4>
+            <b>Name: {{pokemon.name}}</b>
+        </h4>
+        <p>Color: {{pokemon.color}}</p>
+        <p>Type: {{pokemon.type}}</p>
+        <p>Trainer: {{pokemon.name_trainer}}</p>
+        <p>Checked In: {{pokemon.checked_in | date:'MM/dd/yyyy'}}</p>
+        <button ng-click="vm.removePokemon(pokemon.id)">DELETE</button>
+        <button ng-hide="{{pokemon.checked_in_status}}" ng-click="vm.checkInPokemon(pokemon)">CHECK IN</button>
+        <button ng-show="{{pokemon.checked_in_status}}" ng-click="vm.checkOutPokemon(pokemon)">CHECK OUT</button>
     </div>
 </div>
-
-

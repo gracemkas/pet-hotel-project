@@ -22,12 +22,14 @@
 </head>
 
 <body ng-app="PokemonHotelApp">
-    <h1 class="header">Pokemon Hotel</h1>
-    <div class="nav">
-                <a class="nav1" type= "button" ng-href="#!/">Dashboard</a>
-                <a class="nav2" type= "button" ng-href="#!/manage">Manage Trainers</a>
+    <div class="container-fluid">
+        <h1 class="header">Pokemon Hotel</h1>
+        <div class="nav">
+            <a class="nav1" type="button" ng-href="#!/">Dashboard</a>
+            <a class="nav2" type="button" ng-href="#!/manage">Manage Trainers</a>
+        </div>
+        <ng-view></ng-view>
     </div>
-    <ng-view></ng-view>
 </body>
 
 </html>
