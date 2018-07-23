@@ -1,3 +1,5 @@
+-- Database name: pokemon_hotel
+
 CREATE TABLE pokemon (
     id SERIAL PRIMARY KEY,
     name varchar(255),
