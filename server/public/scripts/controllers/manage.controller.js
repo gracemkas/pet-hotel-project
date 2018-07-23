@@ -1,4 +1,4 @@
-app.controller('ManageController', ['HotelService', function(HotelService){
+app.controller('ManageController', ['HotelService', function (HotelService) {
     console.log('Manage Controller has started');
     let self = this;
 
@@ -10,13 +10,13 @@ app.controller('ManageController', ['HotelService', function(HotelService){
     };
 
     self.removeTrainer = function (trainer) {
-        if(trainer.count > 0) {
+        if (trainer.count > 0) {
             alert(`You can't delete a trainer with pokemon!`);
         } else {
             HotelService.removeTrainer(trainer.id);
-        }   
+        }
     }
 
     HotelService.getTrainer();
-  
-  }]);
+
+}]);

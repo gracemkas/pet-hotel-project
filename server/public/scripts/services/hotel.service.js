@@ -31,12 +31,8 @@ app.service('HotelService', ['$http', function ($http) {
                 url: '/hotel/pokemon'
             }).then((response) => {
                 console.log('response from router get', response.data);
-
-                console.log('NAME FROM GET', response.data);
                 let newPokemonList = [];
-
                 for (pokemon of response.data) {
-                    console.log(pokemon);
                     self.getGif(pokemon);
                     newPokemonList.push(pokemon);
                 }
@@ -45,11 +41,10 @@ app.service('HotelService', ['$http', function ($http) {
             })
             .catch((error) => {
                 console.log('error making pokemon get request', error);
-            });
+            })
     }
 
     self.getGif = function (pokemon) {
-        console.log('pokemon: ', pokemon);
         $http.get(`http://api.giphy.com/v1/gifs/search?q=${pokemon.name}&api_key=1ObiKnAdRFuplIEFWzKfx3KJw1NxBuCp&limit=1`)
             .then(function (response) {
                 pokemon.image = response.data.data;
@@ -129,7 +124,4 @@ app.service('HotelService', ['$http', function ($http) {
             console.log('err', err);
         });
     };
-
-
-
 }]);
